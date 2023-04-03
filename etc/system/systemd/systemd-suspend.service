@@ -1,0 +1,24 @@
+#  SPDX-License-Identifier: LGPL-2.1-or-later
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+#---------------------------------------------------
+# copy or symlink /usr/lib/systemd/system/systemd-suspend-then-hibernate.service 
+# https://www.freedesktop.org/software/systemd/man/systemd.unit.html
+# this implies using smart-suspend-hibernate as a target for systemctl suspend and DE suspend button
+# suspend -> countdown -> wakeup -> swapfile on -> copy ram to swapfile -> suspend again
+# on return, copy swapfile to ram -> swapfile off
+[Unit]
+Description=Suspend; Hibernate if not used for a period of time
+Documentation=man:systemd-suspend-then-hibernate.service(8)
+DefaultDependencies=no
+Requires=sleep.target
+After=sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/systemd-sleep suspend-then-hibernate
