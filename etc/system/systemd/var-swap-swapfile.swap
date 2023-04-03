@@ -1,0 +1,17 @@
+[Unit]
+Description=use swapfile only to smart suspend hibernate
+Before=ssystemd-suspend.service
+StopWhenUnneeded=true
+
+[Swap]
+What=/var/swap/swapfile
+Options=noauto
+#### requires /var/swap on fstab, or pre-mounted anyway (systemd.mount, script, nix.conf, etc)
+#### mount on /var hierarchy is recommended ,especially on immutable/stateless distros/setups
+#### nixOS impermanence, opensuse microOs, intel clearlinux,fedora silverblue, rlxOS, vanillaOS, stateless-arch, etc
+# https://gitlab.com/vmath3us/stateless-arch
+[Install]
+RequiredBy=systemd-suspend.service
+# copy or symlink to suspend-then-hibernate
+# https://www.freedesktop.org/software/systemd/man/systemd.swap.html
+# https://wiki.archlinux.org/title/Power_management#Sleep_hooks
