@@ -1,10 +1,10 @@
 # Smart Suspend Hibernate
-* 1. swapon on swapfile;
-* 2. suspend;
-* 3. countdown;
-* 4. wakeup;
-* 5. copy RAM to swapfile;
-* 6. suspend again;
+1. swapon on swapfile;
+2. suspend;
+3. countdown;
+4. wakeup;
+5. copy RAM to swapfile;
+6. suspend again;
 
 while kept energized, will return a simple suspension, high speed. But, if power's out, the workload is saved on swapfile.
 
