@@ -21,13 +21,14 @@ Hybrid sleep is:
 1. store ram in swap/file immediately AND suspend.
 
 if it is turned off, retrieve the job copy swap/file to RAM memory.
+if only suspend, return.
 But, it ALWAYS copy RAM to disk, even with high battery or charger.
 a TBW waste if you return from suspension in a short time.
 
 Suspend then hibernate is:
 1. slow energy mode;
 2. wakeup to verify battery level;
-3. if grant 5%, suspend, else, copy ram to disk, and shutdown;
+3. if bigger 5%, suspend, else, copy ram to disk, and shutdown;
 
 if 5% is not enough power for the copy operation (common especially on devices with old battery, which skip percentages), workload is lost.
 
