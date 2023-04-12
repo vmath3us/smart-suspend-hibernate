@@ -33,3 +33,15 @@ Suspend then hibernate is:
 if 5% is not enough power for the copy operation (common especially on devices with old battery, which skip percentages), workload is lost.
 
 Smart suspend hibernate it's the best balance between avoiding writing to disk but being reliable about the hibernation operation.
+
+# Setup (on selinux)
+1. mkdir (or btrfs su cr) /var/swap
+2. chattr +C /var/swap
+3. chcom -R unconfined_u:object_r:var_t:s0 /var/swap
+4. cd /var/swap
+5. btrfs fi mkswapfile --size 8G swapfile
+6. mkswap swapfile (that will define unconfined_u:object_r:swapfile_t:s0 on swapfile, check with ls -Z, manual define using chcom)
+7. btrfs inspect-internal map-swapfile -r swapfile (is resume_offset)
+8. add resume device and resume_offset on bootloader config
+9. add resume support on initrd
+[Archwiki](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation_into_swap_file)
