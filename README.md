@@ -34,7 +34,7 @@ if 5% is not enough power for the copy operation (common especially on devices w
 
 Smart suspend hibernate it's the best balance between avoiding writing to disk but being reliable about the hibernation operation.
 
-# Setup (on selinux)
+# Setup (on selinux and btrfs)
 1. mkdir (or btrfs su cr) /var/swap;
 2. chattr +C /var/swap;
 3. chcom -R unconfined_u:object_r:var_t:s0 /var/swap;
